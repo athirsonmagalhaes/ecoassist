@@ -36,7 +36,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
 #### 1. Clonar o Repositório 
 Abra o terminal e clone o projeto:
 ```bash
-git clone [https://github.com/seu-usuario/ecoassist.git](https://github.com/seu-usuario/ecoassist.git)
+git clone [https://github.com/seu-usuario/ecoassist.git](https://github.com/athirsonmagalhaes/ecoassist.git)
 cd ecoassist
 
 ```
