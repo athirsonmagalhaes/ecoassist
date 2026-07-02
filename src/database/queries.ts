@@ -18,6 +18,21 @@ export type PlantioComPlanta = {
   ciclo_dias: number | null;
 };
 
+
+export async function perfilExiste(): Promise<boolean> {
+  try {
+    //Executa uma contagem performática na tabela
+    const [resultado] = await db.select({ valor: count() }).from(usuarios);
+
+    //Retorna True se for maior que 0
+    return resultado.valor > 0;
+  } catch (error) {
+    console.error("❌ Erro técnico ao verificar existência de perfil:", error);
+    throw error;
+  }
+}
+
+
 //Salvar perfil usuario
 export async function salvarPerfilUsuario(
   experiencia: string,
@@ -187,19 +202,6 @@ export async function listarPlantiosPorCanteiro(
   }
 }
 
-export async function perfilExiste(): Promise<boolean> {
-  try {
-    //Executa uma contagem performática na tabela
-    const [resultado] = await db.select({ valor: count() }).from(usuarios);
-
-    //Retorna True se for maior que 0
-    return resultado.valor > 0;
-  } catch (error) {
-    console.error("❌ Erro técnico ao verificar existência de perfil:", error);
-    throw error;
-  }
-}
-
 export async function deletarPlantio(idPlantio: number) {
   try {
     await db.delete(plantios).where(eq(plantios.id, idPlantio));
@@ -248,13 +250,14 @@ export async function salvarObservacoes(
   }
 }
 
-export async function buscarResumoLocal() {
-  /*QUEBRAR A LOGICA EM PEQUENAS ETAPAS
-
-  1.SABER LOCAL DO USER
-  2.SABER QUAIS CANTEIROS TEM
-  3.SABER QUAIS PLANTIOS ESTAO ATIVOS NOME DAS PLANTAS
-  4.SABER O CLIMA E TEMPERATURA
-
-  */
+export async function buscarResumoLocal(
+  clima: any,
+  localizacao: string | null,
+) {
+  try {
+    const listaCanteiros = await db.select().from(canteiros);
+  } catch (error) {
+    console.error("❌ Erro ao buscar resumo local: ", error);
+    throw error;
+  }
 }

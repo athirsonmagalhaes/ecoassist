@@ -2,11 +2,11 @@
 import { useWeather } from "@/hooks/useWeather";
 import { useEffect } from "react";
 
-const { handleGetWeather, loading, localizacao, clima, error } = useWeather();
 export default function Header() {
 
-  useEffect(() => {
+  const { handleGetWeather, loading, localizacao, clima, error } = useWeather();
 
+  useEffect(() => {
     handleGetWeather();
   }, []);
 
